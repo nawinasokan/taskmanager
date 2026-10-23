@@ -1,0 +1,78 @@
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    background: #1e293b;
+}
+.site-header a { color: #fff; }
+.site-header .brand { font-weight: 700; font-size: 1.2rem; }
+.site-header nav a { margin-left: 1rem; }
+
+.container {
+    max-width: 960px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+}
+
+h1 { margin-top: 0; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+th, td { padding: 0.7rem 0.9rem; text-align: left; border-bottom: 1px solid #e5e7eb; }
+th { background: #e2e8f0; }
+
+.done { color: #6b7280; text-decoration: line-through; }
+
+.btn, button {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.btn:hover, button:hover { background: #1d4ed8; text-decoration: none; }
+.btn-danger { background: #dc2626; }
+.btn-danger:hover { background: #b91c1c; }
+.btn-light { background: #e2e8f0; color: #222; }
+.btn-light:hover { background: #cbd5e1; }
+
+.card {
+    background: #fff;
+    padding: 1.2rem 1.5rem;
+    border-radius: 8px;
+    max-width: 520px;
+}
+.card input[type="text"], .card textarea { width: 100%; padding: 0.5rem; }
+
+.messages { list-style: none; padding: 0; margin: 0 0 1rem; }
+.messages li { padding: 0.7rem 1rem; border-radius: 6px; margin-bottom: 0.5rem; }
+.messages .success { background: #dcfce7; color: #166534; }
+.messages .info { background: #dbeafe; color: #1e40af; }
+.messages .error { background: #fee2e2; color: #991b1b; }
+
+.filters { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.filters input, .filters select { padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+
+.errorlist { color: #dc2626; list-style: none; padding: 0; margin: 0.3rem 0; }
+.empty { background: #fff; padding: 1rem; border-radius: 8px; }

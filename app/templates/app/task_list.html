@@ -1,0 +1,64 @@
+{% extends 'app/base.html' %}
+
+{% block title %}My Tasks{% endblock %}
+
+{% block content %}
+    <h1>My Tasks</h1>
+
+    <form method="get" class="filters">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search tasks...">
+        <select name="status">
+            <option value="all" {% if status == 'all' %}selected{% endif %}>All</option>
+            <option value="pending" {% if status == 'pending' %}selected{% endif %}>Pending</option>
+            <option value="completed" {% if status == 'completed' %}selected{% endif %}>Completed</option>
+        </select>
+        <button type="submit">Filter</button>
+        <a class="btn btn-light" href="{% url 'app:task_list' %}">Reset</a>
+    </form>
+
+    {% if tasks %}
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            {% if task.completed %}
+                                <span class="done">{{ task.title }}</span> (done)
+                            {% else %}
+                                {{ task.title }}
+                            {% endif %}
+                        </td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.created_at|date:"d M Y, h:i A" }}</td>
+                        <td>
+                            <form method="post" action="{% url 'app:task_toggle' task.pk %}" style="display:inline">
+                                {% csrf_token %}
+                                <button type="submit">{% if task.completed %}Undo{% else %}Done{% endif %}</button>
+                            </form>
+                            <a class="btn btn-light" href="{% url 'app:task_update' task.pk %}">Edit</a>
+                            <a class="btn btn-danger" href="{% url 'app:task_delete' task.pk %}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="empty">
+            {% if query or status != 'all' %}
+                No tasks match your filter.
+            {% else %}
+                No tasks yet. <a href="{% url 'app:task_create' %}">Create your first task</a>.
+            {% endif %}
+        </p>
+    {% endif %}
+{% endblock %}
